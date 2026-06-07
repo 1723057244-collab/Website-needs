@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="联系澳成照明——销售经理、产品经理直联，在线留言直达邮箱。地址：广东省江门市蓬江区荷塘镇西桥路17号。">
+<title>联系我们 - 澳成照明 | Contact Aocen Lighting</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="top-bar"><div class="inner">
+  <a href="tel:+8618138008198"><span data-i18n="top.phone">服务热线：+86 18138008198</span></a>
+  <a href="mailto:liuyin@aoc2005.com"><span data-i18n="top.email">企业邮箱：liuyin@aoc2005.com</span></a>
+</div></div>
+
+<header id="header">
+  <div class="nav-inner">
+    <button class="menu-toggle" onclick="toggleMenu()" aria-label="Menu">☰</button>
+    <a class="logo" href="index.html"><img src="images/enterprise-logo.png" alt="澳成照明"><span>江门市澳成科技照明有限公司</span></a>
+    <nav id="mainNav">
+      <a href="index.html">首页</a><a href="products.html">产品中心</a>
+      <a href="catalog.html">电子图册</a><a href="about.html">关于我们</a><a href="features.html">核心优势</a>
+      <a href="careers.html">人才招聘</a><a href="contact.html" class="nav-active">联系我们</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="lang-toggle" onclick="toggleLang()" aria-label="Switch Language">🌐 <span id="langLabel">EN</span></button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="contact-page-content">
+    <div class="page-inner">
+      <div class="section-head"><div class="en" data-i18n="contact.en">Contact Us</div><h2 data-i18n="contact.title">联系<strong>我们</strong></h2><div class="line"></div></div>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <h3 data-i18n="contact.heading">期待与您合作</h3>
+          <p style="color:var(--muted);margin-bottom:20px;font-size:14px;line-height:1.8" data-i18n="contact.intro">如果您对我们的产品感兴趣，或想了解更详细的规格参数与批量报价，欢迎通过以下方式联系我们，我们将在24小时内回复。</p>
+          <div class="ci-item highlight"><div class="ci-icon">💼</div><div><div class="ci-label" style="color:var(--accent)" data-i18n="contact.sales">销售经理（主要联系）</div><div class="ci-value" style="font-size:16px;font-weight:600">刘江林 Lin</div><div style="font-size:12px;color:var(--muted);margin-top:2px">lin@aoc2005.com</div></div></div>
+          <div class="ci-item highlight"><div class="ci-icon">💼</div><div><div class="ci-label" style="color:var(--accent)" data-i18n="contact.pm">产品经理</div><div class="ci-value" style="font-size:16px;font-weight:600">刘江松 Jackson</div><div style="font-size:12px;color:var(--muted);margin-top:2px">jackson@aoc2005.com</div></div></div>
+          <div class="ci-item"><div class="ci-icon">☎</div><div><div class="ci-label" data-i18n="contact.phone">联系电话</div><div class="ci-value">+86 18138008198</div></div></div>
+          <div class="ci-item"><div class="ci-icon">✉</div><div><div class="ci-label" data-i18n="contact.email">企业邮箱</div><div class="ci-value">liuyin@aoc2005.com</div></div></div>
+          <div class="ci-item"><div class="ci-icon">⌂</div><div><div class="ci-label" data-i18n="contact.addr">公司地址</div><div class="ci-value" data-i18n="contact.addrVal">广东省江门市蓬江区荷塘镇西桥路17号</div></div></div>
+          <details class="contact-full-wrap"><summary data-i18n="contact.full">📋 完整联系方式</summary>
+            <div class="cf-detail">
+              <div><strong style="color:var(--fg)">总经理</strong>：刘尹 · liuyin@aoc2005.com</div>
+              <div><strong style="color:var(--fg)">销售经理</strong>：刘江林 · lin@aoc2005.com</div>
+              <div><strong style="color:var(--fg)">产品经理</strong>：刘江松 · jackson@aoc2005.com</div>
+              <div><strong style="color:var(--fg)">采购经理</strong>：蒋文星 · jwx@aoc2005.com</div>
+              <div><strong style="color:var(--fg)">财务经理</strong>：伍洁莹 · wu@aoc2005.com</div>
+            </div>
+          </details>
+        </div>
+        <div class="contact-form" id="msgForm">
+          <h3 data-i18n="contact.formTitle">💬 在线留言</h3>
+          <p class="form-subtitle" data-i18n="contact.formSub">您的留言将直接发送至销售经理邮箱，其他访问者无法查看</p>
+          <div id="formFields">
+            <div class="form-row">
+              <div class="form-group"><label data-i18n="contact.fCompany">单位名称 <span class="req">*</span></label><input type="text" id="msg_company" placeholder="请输入您的单位名称" data-i18n-placeholder="contact.fCompanyPh"></div>
+              <div class="form-group"><label data-i18n="contact.fName">姓名 <span class="req">*</span></label><input type="text" id="msg_name" placeholder="请输入您的姓名" data-i18n-placeholder="contact.fNamePh"></div>
+            </div>
+            <div class="form-row">
+              <div class="form-group"><label data-i18n="contact.fPosition">职位 <span class="req">*</span></label><input type="text" id="msg_position" placeholder="请输入您的职位" data-i18n-placeholder="contact.fPositionPh"></div>
+              <div class="form-group"><label data-i18n="contact.fContact">联系方式 <span class="req">*</span></label><input type="text" id="msg_contact" placeholder="电话 / 邮箱 / 微信" data-i18n-placeholder="contact.fContactPh"></div>
+            </div>
+            <div class="form-group"><label data-i18n="contact.fMessage">留言内容 <span class="req">*</span></label><textarea id="msg_message" placeholder="请输入您想咨询的内容..." data-i18n-placeholder="contact.fMessagePh"></textarea></div>
+            <div class="form-error" id="formError"></div>
+            <button class="btn btn-primary btn-lg" onclick="submitMessage()" style="width:100%;justify-content:center" data-i18n="contact.submit">✉ 提交留言</button>
+          </div>
+          <div class="form-success" id="formSuccess">
+            <div class="s-icon">✅</div>
+            <h4 data-i18n="contact.successTitle">留言提交成功！</h4>
+            <p data-i18n="contact.successMsg">感谢您的留言，我们的销售经理将尽快与您联系。</p>
+            <button class="btn btn-outline" onclick="resetForm()" style="margin-top:16px" data-i18n="contact.another">继续留言</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="foot-inner">
+    <div class="f-col"><div class="f-brand"><div class="fname" data-i18n="footer.name">澳成照明</div><p data-i18n="footer.enName">Aocen Lighting</p><p style="margin-top:8px" data-i18n="footer.desc">集高端LED产品研发、智能制造、全域营销及光环境解决方案服务于一体的国家高新技术企业。</p></div></div>
+    <div class="f-col"><h4 data-i18n="footer.products">产品中心</h4><a href="products.html" data-i18n="footer.cat1">型材灯</a><a href="products.html" data-i18n="footer.cat2">轨道灯</a><a href="products.html" data-i18n="footer.cat3">筒灯 / 洗墙灯 / 工程灯</a></div>
+    <div class="f-col"><h4 data-i18n="footer.about">关于我们</h4><a href="about.html" data-i18n="footer.a1">企业介绍</a><a href="features.html" data-i18n="footer.a2">核心优势</a><a href="contact.html" data-i18n="footer.a3">联系方式</a></div>
+    <div class="f-col"><h4 data-i18n="footer.contactTitle">联系方式</h4><a href="tel:+8618138008198">+86 18138008198</a><a href="mailto:liuyin@aoc2005.com">liuyin@aoc2005.com</a><span data-i18n="footer.location">广东省江门市蓬江区</span></div>
+  </div>
+  <div class="foot-bottom"><span data-i18n="footer.copyright">© 2026 澳成照明 Aocen Lighting</span><span>粤ICP备XXXXXXXX号</span></div>
+</footer>
+
+<div class="toast" id="toast"></div>
+<script src="data.js"></script>
+<script src="app.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelector('header nav a[href="contact.html"]').classList.add('nav-active');
+});
+</script>
+</body>
+</html>

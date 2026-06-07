@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="澳成照明产品中心——型材灯、轨道灯、筒灯、洗墙灯、工程灯五大系列，27款产品型号，满足不同商业空间的照明需求。">
+<meta name="keywords" content="LED型材灯,LED轨道灯,LED筒灯,洗墙灯,工程灯,澳成照明产品">
+<title>产品中心 - 澳成照明 | Aocen Lighting Products</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="top-bar"><div class="inner">
+  <a href="tel:+8618138008198"><span data-i18n="top.phone">服务热线：+86 18138008198</span></a>
+  <a href="mailto:liuyin@aoc2005.com"><span data-i18n="top.email">企业邮箱：liuyin@aoc2005.com</span></a>
+</div></div>
+
+<header id="header">
+  <div class="nav-inner">
+    <button class="menu-toggle" onclick="toggleMenu()" aria-label="Menu">☰</button>
+    <a class="logo" href="index.html"><img src="images/enterprise-logo.png" alt="澳成照明"><span>江门市澳成科技照明有限公司</span></a>
+    <nav id="mainNav">
+      <a href="index.html">首页</a>
+      <a href="products.html" class="nav-active">产品中心</a>
+      <a href="catalog.html">电子图册</a>
+      <a href="about.html">关于我们</a>
+      <a href="features.html">核心优势</a>
+      <a href="careers.html">人才招聘</a>
+      <a href="contact.html">联系我们</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="lang-toggle" onclick="toggleLang()" aria-label="Switch Language">🌐 <span id="langLabel">EN</span></button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="products-page-content">
+    <div class="prod-page-inner">
+      <div class="section-head"><div class="en" data-i18n="products.en">Product Center</div><h2 data-i18n="products.title">产品<strong>展示</strong></h2><div class="line"></div></div>
+      <div class="cat-main" id="catMain"></div>
+      <div class="cat-sub-wrap hidden" id="catSub"></div>
+      <div class="prod-area" id="prodArea"></div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="foot-inner">
+    <div class="f-col"><div class="f-brand"><div class="fname" data-i18n="footer.name">澳成照明</div><p data-i18n="footer.enName">Aocen Lighting</p><p style="margin-top:8px" data-i18n="footer.desc">集高端LED产品研发、智能制造、全域营销及光环境解决方案服务于一体的国家高新技术企业。</p></div></div>
+    <div class="f-col"><h4 data-i18n="footer.products">产品中心</h4><a href="products.html" data-i18n="footer.cat1">型材灯</a><a href="products.html" data-i18n="footer.cat2">轨道灯</a><a href="products.html" data-i18n="footer.cat3">筒灯 / 洗墙灯 / 工程灯</a></div>
+    <div class="f-col"><h4 data-i18n="footer.about">关于我们</h4><a href="about.html" data-i18n="footer.a1">企业介绍</a><a href="features.html" data-i18n="footer.a2">核心优势</a><a href="contact.html" data-i18n="footer.a3">联系方式</a></div>
+    <div class="f-col"><h4 data-i18n="footer.contactTitle">联系方式</h4><a href="tel:+8618138008198">+86 18138008198</a><a href="mailto:liuyin@aoc2005.com">liuyin@aoc2005.com</a><span data-i18n="footer.location">广东省江门市蓬江区</span></div>
+  </div>
+  <div class="foot-bottom"><span data-i18n="footer.copyright">© 2026 澳成照明 Aocen Lighting</span><span>粤ICP备XXXXXXXX号</span></div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script src="data.js"></script>
+<script src="app.js"></script>
+<script>
+// ===== PRODUCTS PAGE LOGIC (v2 — marquee for "all", grid for others) =====
+var currentCat = 'all';
+var currentSubcat = 'all';
+
+function renderMainCats() {
+  var container = document.getElementById('catMain');
+  var mainCats = ['all','profile','track','downlight','wallwasher','engineering'];
+  var keys = ['products.catAll','products.catProfile','products.catTrack','products.catDownlight','products.catWallwasher','products.catEngineering'];
+  var html = '';
+  for (var i = 0; i < mainCats.length; i++) {
+    var cat = mainCats[i], active = currentCat === cat ? ' active' : '';
+    html += '<button class="cat-main-btn' + active + '" onclick="selectMainCat(\'' + cat + '\')">' + t(keys[i]) + '</button>';
+  }
+  container.innerHTML = html;
+}
+
+function renderSubCats() {
+  var wrap = document.getElementById('catSub');
+  if (currentCat === 'profile') {
+    wrap.classList.remove('hidden');
+    var subKeys = {all:'products.subAll', straight:'products.subStraight', corner:'products.subCorner', curved:'products.subCurved'};
+    var html = '';
+    for (var k in subKeys) {
+      var active = currentSubcat === k ? ' active' : '';
+      html += '<button class="cat-sub-btn' + active + '" onclick="selectSubCat(\'' + k + '\')">' + t(subKeys[k]) + '</button>';
+    }
+    wrap.innerHTML = html;
+  } else { wrap.classList.add('hidden'); currentSubcat = 'all'; }
+}
+
+function selectMainCat(cat) { currentCat = cat; currentSubcat = 'all'; renderMainCats(); renderSubCats(); renderProductArea(); }
+function selectSubCat(subcat) { currentSubcat = subcat; renderSubCats(); renderProductArea(); }
+
+function getFilteredProducts() {
+  var products = currentCat === 'all' ? PRODUCTS : PRODUCTS.filter(function(p) { return p.cat === currentCat; });
+  if (currentCat === 'profile' && currentSubcat !== 'all') {
+    products = products.filter(function(p) { return p.subcat === currentSubcat; });
+  }
+  return products;
+}
+
+function renderCard(p) {
+  var tag = currentLang === 'en' ? (CATEGORIES[p.cat] ? CATEGORIES[p.cat].name.en : p.s) : p.s;
+  if (p.subcat && CATEGORIES.profile && CATEGORIES.profile.subcats[p.subcat]) {
+    tag += ' · ' + (currentLang === 'en' ? CATEGORIES.profile.subcats[p.subcat].name.en : CATEGORIES.profile.subcats[p.subcat].name.zh);
+  }
+  var icon = p.cat === 'track' ? '⬡' : '☰';
+  return '<a class="prod-card" href="product-detail.html?model=' + encodeURIComponent(p.model) + '">'
+    + '<div class="img-wrap">'
+    + (p.image ? '<img src="' + p.image + '" alt="' + p.name + '" loading="lazy" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'flex\'">' : '')
+    + '<div class="icon-placeholder" style="' + (p.image ? 'display:none' : '') + '">' + icon + '</div></div>'
+    + '<div class="info"><div class="series-tag">' + tag + '</div><h3>' + p.name + '</h3><div class="model">' + p.model + '</div>'
+    + '<div class="specs-short">' + (p.specs || '') + '</div><div class="more">' + t('viewDetails') + '</div></div></a>';
+}
+
+function renderProductArea() {
+  var area = document.getElementById('prodArea');
+  var products = getFilteredProducts();
+
+  if (products.length === 0) {
+    area.innerHTML = '<div class="no-products"><div class="np-icon">\u{1F4E6}</div><h3>' + t('products.emptyTitle') + '</h3><p>' + t('products.emptyDesc') + '</p></div>';
+    return;
+  }
+
+  if (currentCat === 'all') {
+    // ===== "ALL" = auto-scroll marquee (grouped by category) =====
+    var groups = {};
+    products.forEach(function(p) {
+      if (!groups[p.cat]) groups[p.cat] = [];
+      groups[p.cat].push(p);
+    });
+    var catNames = {profile:'products.catProfile', track:'products.catTrack', downlight:'products.catDownlight', wallwasher:'products.catWallwasher', engineering:'products.catEngineering'};
+    var entries = Object.entries(groups);
+    var html = '';
+    for (var i = 0; i < entries.length; i++) {
+      var cat = entries[i][0], prods = entries[i][1];
+      // Build 2x set for seamless infinite scroll
+      var cards = '';
+      for (var pass = 0; pass < 2; pass++) {
+        for (var j = 0; j < prods.length; j++) cards += renderCard(prods[j]);
+      }
+      var duration = Math.max(20, prods.length * 4); // longer track = proportionally slower
+      html += '<div class="prod-row"><div class="prod-row-title">' + t(catNames[cat] || cat) + ' <span class="rt-count">(' + prods.length + ')</span></div>'
+        + '<div class="marquee-wrap"><div class="marquee-track" style="animation:marqueeScroll ' + duration + 's linear infinite">' + cards + '</div></div></div>';
+    }
+    area.innerHTML = html;
+  } else {
+    // ===== SPECIFIC CATEGORY = grid tiled layout =====
+    if (currentCat === 'profile' && currentSubcat === 'all') {
+      var subNames = {straight:'products.subStraight', corner:'products.subCorner', curved:'products.subCurved'};
+      var html = '';
+      ['straight','corner','curved'].forEach(function(sub) {
+        var subProds = products.filter(function(p) { return p.subcat === sub; });
+        if (!subProds.length) return;
+        html += '<div class="prod-row"><div class="prod-row-title">' + t(subNames[sub]) + ' <span class="rt-count">(' + subProds.length + ')</span></div>'
+          + '<div class="prod-grid-wrap"><div class="prod-grid">' + subProds.map(renderCard).join('') + '</div></div></div>';
+      });
+      area.innerHTML = html;
+    } else {
+      var html = '<div class="prod-row"><div class="prod-row-title">' + (function() {
+        var catNames = {profile:'products.catProfile', track:'products.catTrack', downlight:'products.catDownlight', wallwasher:'products.catWallwasher', engineering:'products.catEngineering'};
+        if (currentCat === 'profile' && currentSubcat !== 'all') {
+          var subNames = {straight:'products.subStraight', corner:'products.subCorner', curved:'products.subCurved'};
+          return t(subNames[currentSubcat] || currentSubcat);
+        }
+        return t(catNames[currentCat] || currentCat);
+      })() + ' <span class="rt-count">(' + products.length + ')</span></div>'
+        + '<div class="prod-grid-wrap"><div class="prod-grid">' + products.map(renderCard).join('') + '</div></div></div>';
+      area.innerHTML = html;
+    }
+  }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+  renderMainCats();
+  renderSubCats();
+  renderProductArea();
+  document.querySelector('header nav a[href="products.html"]').classList.add('nav-active');
+});
+</script>
+</body>
+</html>

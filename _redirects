@@ -1,0 +1,2 @@
+# Cloudflare Pages _redirects — deploy-v2
+# All routes are direct .html files, no SPA fallback needed
